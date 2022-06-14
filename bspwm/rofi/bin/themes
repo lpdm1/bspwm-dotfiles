@@ -1,0 +1,116 @@
+#!/usr/bin/env bash
+
+## Copyright (C) 2020-2021 Aditya Shakya <adi1090x@gmail.com>
+## Everyone is permitted to copy and distribute copies of this file under GNU-GPL3
+
+DIR="$HOME/.config/bspwm"
+BSP="$HOME/.config/bspwm/themes"
+rofi_command="rofi -theme $DIR/rofi/themes/themes.rasi"
+
+# Themes
+theme_1=" Beach"
+theme_2=" Blade"
+theme_3=" Bouquet"
+theme_4=" Cyberpunk"
+theme_5=" Dracula"
+theme_6=" Flowers"
+theme_7=" Forest"
+theme_8=" Groot"
+theme_9=" Gruvbox"
+theme_10=" Hack"
+theme_11=" Keyboards"
+theme_12=" Light"
+theme_13=" Manhattan"
+theme_14=" Nord"
+theme_15=" Nordic"
+theme_16=" Pastel"
+theme_17=" Rick"
+theme_18=" Spark"
+theme_19=" Tealize"
+theme_20=" Wave"
+
+# Variable passed to rofi
+options="$theme_1
+$theme_2
+$theme_3
+$theme_4
+$theme_5
+$theme_6
+$theme_7
+$theme_8
+$theme_9
+$theme_10
+$theme_11
+$theme_12
+$theme_13
+$theme_14
+$theme_15
+$theme_16
+$theme_17
+$theme_18
+$theme_19
+$theme_20"
+
+chosen="$(echo "$options" | $rofi_command -p "Temas disponibles: (20)" -dmenu -selected-row 0)"
+case $chosen in
+    $theme_1)
+        bash ${BSP}/set-theme  'beach.jpg' 'beach' 'Arc-Lighter' 'Arc-Circle' 'Fluent' 'beach.conf'
+        ;;
+    $theme_2)
+        bash ${BSP}/set-theme  'blade.jpg' 'blade' 'Blade' 'Nordic-Folders' 'LyraS' 'himbeere.conf'
+        ;;
+    $theme_3)
+        bash ${BSP}/set-theme  'bouquet.jpg' 'bouquet' 'Juno-mirage' 'Luna-Dark' 'Future-dark' 'bouquet.conf'
+        ;;
+    $theme_4)
+        bash ${BSP}/set-theme  'cyberpunk.jpg' 'cyberpunk' 'Cyberpunk' 'Archcraft-Dark' 'LyraB' 'delt-dark.conf'
+        ;;
+    $theme_5)
+        bash ${BSP}/set-theme  'dracula.png' 'dracula' 'Dracula' 'Nordic-Folders' 'Sweet' 'inkpot.conf'
+        ;;
+    $theme_6)
+        bash ${BSP}/set-theme  'flowers.jpg' 'flowers' 'Kripton' 'Zafiro' 'Fluent-dark' 'spider-dark.conf'
+        ;;
+    $theme_7)
+        bash ${BSP}/set-theme  'forest.jpg' 'forest' 'Adapta-Nokto' 'Luv-Folders-Dark' 'Vimix' 'adapta.conf'
+        ;;
+    $theme_8)
+        bash ${BSP}/set-theme  'groot.jpg' 'groot' 'Groot' 'Luna-Dark' 'Pear' 'bespin.conf'
+        ;;
+    $theme_9)
+        bash ${BSP}/set-theme  'gruvbox.jpg' 'gruvbox' 'Gruvbox' 'Luna-Dark' 'Future-dark' 'monokai.conf'
+        ;;
+    $theme_10)
+        bash ${BSP}/set-theme  'hack.jpg' 'hack' 'Hack' 'Hack' 'LyraB' 'hack.conf'
+        ;;
+    $theme_11)
+        bash ${BSP}/set-theme  'keyboards.jpg' 'keyboards' 'Sweet-Dark' 'Zafiro-Purple' 'Sweet' 'keyboards.conf'
+        ;;
+    $theme_12)
+        bash ${BSP}/set-theme  'light.jpg' 'light' 'White' 'Arc-Circle' 'Fluent-dark' 'eleven.conf'
+        ;;
+    $theme_13)
+        bash ${BSP}/set-theme  'manhattan.jpg' 'manhattan' 'Manhattan' 'Luv-Folders-Dark' 'Vimix-dark' 'manhattan.conf'
+        ;;
+    $theme_14)
+        bash ${BSP}/set-theme  'nord.jpg' 'nord' 'Arc-Dark' 'Arc-Circle' 'Qogirr' 'nordic.conf'
+        ;;
+    $theme_15)
+        bash ${BSP}/set-theme  'nordic.jpg' 'nord' 'Nordic' 'Nordic-Folders' 'Qogirr-dark' 'nordic.conf'
+        ;;
+    $theme_16)
+        bash ${BSP}/set-theme  'pastel.png' 'pastel' 'White' 'Qogir' 'Qogirr-dark' 'fluffy.conf'
+        ;;
+    $theme_17)
+        bash ${BSP}/set-theme  'rick.jpg' 'rick' 'Rick' 'Zafiro' 'Vimix-dark' 'sleepy-pastel.conf'
+        ;;
+    $theme_18)
+        bash ${BSP}/set-theme  'spark.jpg' 'spark' 'Spark' 'Luv-Folders' 'Vimix' 'spark.conf'
+        ;;
+    $theme_19)
+        bash ${BSP}/set-theme  'tealize.png' 'tealize' 'Juno-palenight' 'Luv-Folders-Dark' 'Vimix' 'tealize.conf'
+        ;;
+    $theme_20)
+        bash ${BSP}/set-theme  'wave.jpg' 'wave' 'Wave' 'Luv-Folders-Dark' 'Vimix' 'wave.conf'
+        ;;
+esac
