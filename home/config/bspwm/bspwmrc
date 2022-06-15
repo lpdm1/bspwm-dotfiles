@@ -6,9 +6,6 @@
 ## Environtment
 export PATH="${PATH}:$HOME/.config/bspwm/bin"
 
-#Launchers
-$HOME/.config/bspwm/autostart.sh
-
 ## Get colors from .Xresources -------------------------------#
 xrdb ~/.Xresources
 getcolors() {
@@ -83,7 +80,7 @@ for i in ${files[@]}; do
 bspc rule -a Code desktop='^4' follow=on focus=on
 declare -a code=()
 for i in ${code[@]}; do
-   bspc rule -a $i desktop='^4' state=fullscreen follow=on focus=on; done
+   bspc rule -a $i desktop='^4' state=floating follow=on focus=on; done
 
 # 5 > office and docs
 bspc rule -a libreoffice-writer desktop='^5' follow=on focus=on
@@ -142,6 +139,42 @@ for i in ${floating[@]}; do
 
 # Kill if already running
 killall -9 xsettingsd sxhkd dunst ksuperkey xfce4-power-manager mpd
+
+xrandr --output DVI-I-0 --primary --mode 1600x900 --pos 0x0 --rotate normal --output DVI-I-1 --off --output HDMI-0 --off --output DVI-D-0 --mode 1440x900 --pos 1600x0 --rotate normal
+
+# Lauch notification daemon
+dunst \
+-geom "280x50-10+42" -frame_width "1" -font "Iosevka Custom 9" \
+-lb "$BACKGROUND" -lf "$FOREGROUND" -lfr "$BLUE" \
+-nb "$BACKGROUND" -nf "$FOREGROUND" -nfr "$BLUE" \
+-cb "$BACKGROUND" -cf "$RED" -cfr "$RED" &
+
+# Lauch xsettingsd daemon
+xsettingsd &
+
+# Polkit agent
+if [[ ! `pidof xfce-polkit` ]]; then
+	/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+fi
+
+# Lauch keybindings daemon
+sxhkd &
+
+# Enable Super Keys For Menu
+ksuperkey -e 'Super_L=Alt_L|F1' &
+ksuperkey -e 'Super_R=Alt_L|F1' &
+
+# Enable power management
+xfce4-power-manager &
+
+# Fix cursor
+xsetroot -cursor_name left_ptr
+
+# Restore wallpaper
+bash $HOME/.fehbg
+
+# Start mpd
+exec mpd &
 
 # Start bspwm scripts
 bspcolors
